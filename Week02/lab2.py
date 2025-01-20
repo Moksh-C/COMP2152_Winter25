@@ -1,15 +1,8 @@
-elements =["Hydrogen","Helium","Lithium","Beryllium","Boron","Carbon"]
-print ["Elements:",elements]
+import random
 
-# git add . && git commit -m "add elements array" && git push
+# Define weapons array
+weapons = ["Fist", "Knife", "Club", "Gun", "Bomb", "Nuclear bomb"]
 
-#def funct_name():
-# return True
-
-# def say_greeting(name, message="hi"):
-#     print(f" {message}, {name}")
-# say_greeting("Maziar")
-# say_greeting("Maziar", "Hello")
 
 def get_valid_int_input(prompt):
     while True:
@@ -17,21 +10,29 @@ def get_valid_int_input(prompt):
             return int(input(prompt))
         except ValueError:
             print("Error: Please enter a valid integer!")
-            continue
-try:
-    elements_selected = get_valid_int_input("Enter the index of the element you like")
-    # Roll dice
-    elementRoll = random.randint(1, 6)
-    totalNum = elements_selected + elementRoll
 
-    # Print the result based on the totalNum
-    if elementRoll <= 2:
-        print("You rolled a weak element, friend.")
-    elif elementRoll <= 4:
-        print("Yor element is moderate.")
+
+try:
+    # Roll the dice to determine weaponRoll
+    weaponRoll = random.randint(1, 6)
+    print(f"Weapon roll: {weaponRoll}")
+
+    # Access weapon based on weaponRoll (index starts from 0, so subtract 1)
+    weapon = weapons[weaponRoll - 1]
+    print(f"Hero's weapon: {weapon}")
+
+
+    if weaponRoll <= 2:
+        print("You rolled a weak weapon, friend.")
+    elif weaponRoll <= 4:
+        print("Your weapon is meh.")
     else:
-        print("Nice element.")
+        print("Nice weapon, friend!")
+
+    # Special case for Fist
+    if weapon != "Fist":
+        print("Thank goodness you didn't roll the Fist...")
 except IndexError:
-    print("Error:Invalid input. Please enter a valid integer!")
+    print("Error: Invalid weapon roll. Please try again.")
 except Exception as e:
-    print("")
+    print(f"Unexpected error: {e}")
